@@ -1,0 +1,25 @@
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()" #f="ngForm">
+	<div class="D1">
+		<label>#CODE</label>
+		<input type="text" formControlName="code">
+
+		<label>TITRE</label>
+		<input type="text" formControlName="name">
+
+		<label>AUTEUR</label>
+		<input type="text" formControlName="author">
+
+		<label>STATUS</label>
+		<select formControlName="status">
+			<option value=""></option>
+			<option value="disponible">Disponible</option>
+			<option value="pas disponible">Pas Disponible</option>
+		</select>
+		
+
+		<div class="action">
+			<button id="btnadd" [disabled]="f.invalid">Ajouter</button>
+			<button id="vide">vider</button>
+		</div>
+	</div>
+</form>

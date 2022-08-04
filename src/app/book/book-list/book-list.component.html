@@ -1,0 +1,30 @@
+
+<div class="row">
+    <div class="col-8">
+        <input id="txtsearsh" type="text" placeholder="Search..." [(ngModel)]="searchText">
+    </div>
+    <div class="col-4">
+        <button class="btn btn-primary float-end m-2"><a routerLink="/book/add" class="text-white" >Add Book</a></button>
+    </div>
+</div>
+
+<table id='tab' class="">
+	<tr><th>ID</th><th>#CODE</th><th>TITRE</th><th>AUTEUR</th><th>STATUS</th><th>Count Words Title</th><th>Pow CWT</th><th style="min-width: 300px;">Action</th></tr>
+	<tbody id='bodyTab'>
+		<tr *ngFor="let book of books|filterPipe : searchText|order:1;  let i = index">
+            <td>{{ book.id }}</td>
+            <td>{{ book.code }}</td>
+            <td>{{ book.name }}</td>
+            <td>{{ book.author }}</td>
+            <td [appStatusColor]="book">{{ book.status }}</td>
+            <td>{{ book.name|wordCountPipe }}</td>
+            <td>{{ book.name|wordCountPipe|pow:i }}</td>
+
+            <td>
+                <button (click)="showBook(book.id)" class="btn btn-success">Show</button>
+                <button (click)="editBook(book.id)" class="btn btn-success">Edit</button>
+                <button (click)="onDelete(book.id)" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+	</tbody>
+</table>
